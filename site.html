@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <title>Graph Calc</title>
+        <link rel="stylesheet" type="text/css" href="src/style.css" media="all"/>
+        <script src="https://unpkg.com/function-plot@1.22.2/dist/function-plot.js"></script>
+        <script src="src/script.js" defer></script>
+    </head>
+    <body>
+        <div class="FirstBox">
+            <div class="TitleTextBox">
+                GraphCalc
+            </div>
+            <div class="FirstCalcBox" id="firstCalcBox">
+                <div class="Equations" id="zEquation">
+                    <div class="Text">Z=
+                    </div>
+                    <textarea class="EquationCoefficent" id="zX1Coefficent" maxlength="3"></textarea>
+                    <div class="Text">x1
+                        +
+                    </div>
+                    <textarea class="EquationCoefficent" id="zX2Coefficent" maxlength="3"></textarea>
+                    <div class="Text">x2
+                        
+                    </div>
+                </div>
+                <div class="HowManyConditions">
+                    <div class="Text2">
+                        How Many Conditions You Will Input :
+                    </div>
+                    <textarea class="EquationCoefficent" id="conditionC" maxlength="3"></textarea>
+                    <button class="ConditionCount" type="button" id="conditionCount">Submit</button> 
+                </div>
+                <!-- This template will be used to get conditions
+                <div class="Equations" id="equation1">
+                    <textarea class="EquationCoefficent" id="X1Coefficent1" maxlength="3">
+
+                    </textarea>
+                    <div class="Text">x1
+                        +
+                    </div>
+                    <textarea class="EquationCoefficent" id="X2Coefficent1" maxlength="3">
+                        
+                    </textarea>
+                    <div class="Text">x2
+                        
+                    </div>
+                    <select class="EquationCoefficent" id="signs">
+                        <option value="1">=
+                        </option>
+                        <option value="2"><=
+                        </option>
+                        <option value="3">=>
+                        </option>
+                    </select>
+                    <textarea class="Constant" id="constant1" maxlength="3">
+                        
+                    </textarea>
+                </div>-->
+            </div>
+            <div class="BoardBox" id="board">
+
+            </div>
+            <div class="MinMax" id="minMax">
+                <div class="Result" id="result">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
