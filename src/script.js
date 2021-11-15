@@ -6,6 +6,7 @@ var zX2Coefficent2 = document.getElementById("zX2Coefficent"); //x2's coefficent
 var board = document.getElementById("board");
 var minMax = document.getElementById("minMax");
 var result = document.getElementById("result");
+var jxgBox = document.getElementById("jxgbox");
 var condition1; //the submit button that takes input from conditions;
 var conditionCoefficents;
 var conditionCount, zX1, zX2;
@@ -185,30 +186,25 @@ function submitConditions(){
                     maxY = points[i][1];
                 }
             }
-            maxX = maxX < 0 ? -maxX : maxX;
-            maxY = maxY < 0 ? -maxY : maxY;
-            maxX = maxX == 0 ? 5 : maxX;
-            maxY = maxY == 0 ? 5 : maxY;
-            var parameters = {
-                title: 'Z\'s Solution Zone',
-                target: '#board',
-                data: [{
-                    points: [],
-                    fnType: 'points',
-                    graphType: 'polyline'
-                }],
-            grid: true,
-            disableZoom: true,
-            yAxis: {domain: [-maxY, maxY]},
-            xAxis: {domain: [-maxX, maxX]}
-            };
+            var maxNum = maxX >= maxY ? maxX : maxY;
+            maxNum++;
+            var jxgBoard = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-maxNum, maxNum, maxNum, -maxNum], axis:true});  
             points.sort(function(a,b){
                 if(a[0] == b[0]){
                     return a[1] - b[1];
                 }
                 return a[0] - b[0];
             });
-            parameters.data[0].points = points;
+            var arrPoints = [];
+            for(var i = 0; i < points.length; i++){
+                arrPoints[i] = jxgBoard.create('point',points[i]);
+            }
+            var poly = jxgBoard.create('polygon', arrPoints, { borders:{strokeColor:'black'} });
+            var arrGraph = [];
+            for(var i = 0; i < conditionsArr.length; i++){
+                arrGraph[i] = jxgBoard.create('functiongraph',[function(x){ return (-conditionsArr[i][0]/conditionsArr[i][1])*x + (conditionsArr[i][3]/conditionsArr[i][1]);}, -maxNum, maxNum], {name: i});
+            }
+            console.log(arrGraph);
             var results = [], result1;
             for(var i = 0; i < points.length; i++){
                 result1 = (zX1 * points[i][0]) + (zX2 * points[i][1])
@@ -217,7 +213,6 @@ function submitConditions(){
             results.sort(function(a,b) {
                 return a[0] - b[0];
             });
-            functionPlot(parameters);
             board.style.display = "block";
             var resultLast = results.length - 1;
             result.innerHTML = "Minimum Point: (" + results[0][1] + ") " + "Z Min : "  + results[0][0] + " Maximum Point: (" + results[resultLast][1] + ") "  + "Z Max : "  + results[resultLast][0];

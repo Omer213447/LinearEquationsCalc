@@ -6,7 +6,8 @@
         <meta name="description" content=""/>
         <title>Graph Calc</title>
         <link rel="stylesheet" type="text/css" href="src/style.css" media="all"/>
-        <script src="https://unpkg.com/function-plot@1.22.2/dist/function-plot.js"></script>
+        <link rel="stylesheet" type="text/css" href="src/jsxgraph.css" media="all"/>
+        <script src="src/jsxgraphcore.js"></script>
         <script src="src/script.js" defer></script>
     </head>
     <body>
@@ -62,7 +63,7 @@
                 </div>-->
             </div>
             <div class="BoardBox" id="board">
-
+                <div id="jxgbox" style="width: 500px; height: 500px; display: flex; align-items: center; justify-content: center;"></div>
             </div>
             <div class="MinMax" id="minMax">
                 <div class="Result" id="result">
