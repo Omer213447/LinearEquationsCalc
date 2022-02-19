@@ -28,7 +28,7 @@ conditionCButton.addEventListener('click', (event) => {
         zX2Coefficent2.defaultValue = zX2;
         conditionCElement.defaultValue = conditionCount;
         for(var i = 1; i <= conditionCount; i++){
-            boxElement.innerHTML += "<div class=\"Equations\"id=\"equation"+ i +"\"><textarea class=\"ConditionCoefficent\"id=\"X1Coefficent" + i + "\" maxlength=\"3\"><\/textarea><div class=\"Text\">x1+<\/div><textarea class=\"ConditionCoefficent\"id=\"X2Coefficent" + i + "\" maxlength=\"3\"><\/textarea><div class=\"Text\">x2<\/div><select class=\"ConditionCoefficent\" id=\"signs" + i + "\"><option value=\"1\">=<\/option><option value=\"2\"><=<\/option><option value=\"3\">=><\/option><\/select>&nbsp&nbsp&nbsp<textarea class=\"ConditionCoefficent\"id=\"constant1\" maxlength=\"3\"><\/textarea><\/div>";
+            boxElement.innerHTML += "<div class=\"Equations\"id=\"equation"+ i +"\"><textarea class=\"ConditionCoefficent\"id=\"X1Coefficent" + i + "\" maxlength=\"3\"><\/textarea><div class=\"Text\">x1+<\/div><textarea class=\"ConditionCoefficent\"id=\"X2Coefficent" + i + "\" maxlength=\"3\"><\/textarea><div class=\"Text\">x2<\/div><select class=\"ConditionCoefficent\" id=\"signs" + i + "\"><option value=\"1\">=<\/option><option value=\"2\"><=<\/option><option value=\"3\">=><\/option><\/select>&nbsp&nbsp&nbsp<textarea class=\"ConditionCoefficent\"id=\"constant" + i + "\" maxlength=\"3\"><\/textarea><\/div>";
         }
         boxElement.innerHTML += "<div class=\"HowManyConditions\"><button class=\"ConditionCount\" type=\"button\" onclick=\"submitConditions()\" id=\"condition1\">Submit</button><\/div>";
     }
@@ -202,9 +202,10 @@ function submitConditions(){
             var poly = jxgBoard.create('polygon', arrPoints, { borders:{strokeColor:'black'} });
             var arrGraph = [];
             for(var i = 0; i < conditionsArr.length; i++){
-                arrGraph[i] = jxgBoard.create('functiongraph',[function(x){ return (-conditionsArr[i][0]/conditionsArr[i][1])*x + (conditionsArr[i][3]/conditionsArr[i][1]);}, -maxNum, maxNum], {name: i});
+                arrGraph[i] = jxgBoard.create('functiongraph',[function(x){ return (-conditionsArr[i][0]/conditionsArr[i][1])*x + (conditionsArr[i][3]/conditionsArr[i][1]);}, -maxNum, maxNum]);
             }
             console.log(arrGraph);
+            console.log(conditionsArr);
             var results = [], result1;
             for(var i = 0; i < points.length; i++){
                 result1 = (zX1 * points[i][0]) + (zX2 * points[i][1])
